@@ -1,0 +1,11 @@
+id = "cddl"
+name = "CDDL"
+description = "CDDL (RFC 8610) syntax highlighting."
+version = "0.1.0"
+schema_version = 1
+authors = ["Kai Curry"]
+
+[grammars.cddl]
+repository = "file:///Users/kaicurry/dev/zed-cddl"
+rev = "35351cfd1062e87527f62f104aa6a8575d6c3ad6"
+path = "grammar"
