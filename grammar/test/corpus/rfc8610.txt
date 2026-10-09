@@ -1,0 +1,303 @@
+================================================================================
+RFC 8610 constructs
+================================================================================
+
+; RFC 8610 style sample
+person = {
+  ? name: tstr,
+  age: uint .le 150,
+  * tstr => any,
+  "id" ^ => bstr .size 16
+  1*3 nick: text
+}
+reading = [+ sample]
+sample = (time: #6.1(int), value: float / null, raw: #6.<uint>(bstr))
+color = &colors
+colors = ( red: 0, green: 1 )
+range = 0..255
+float-range = -1.5...0x1.8p3
+msg /= text
+grp //= (a: int // b: tstr)
+pair<K, V> = [K, V]
+x = pair<tstr, uint>
+mixed = { ~base, h'beef' => b64'AQ', 'raw' => #7.25 }
+base = { kind: "a\"b" }
+entry = x: int
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (comment)
+  (rule
+    (identifier)
+    (group_entry
+      (type
+        (type1
+          (map
+            (group
+              (group_choice
+                (group_entry
+                  (occurrence)
+                  (member_key
+                    (bareword))
+                  (type
+                    (type1
+                      (reference
+                        (identifier)))))
+                (group_entry
+                  (member_key
+                    (bareword))
+                  (type
+                    (type1
+                      (reference
+                        (identifier))
+                      (control_operator)
+                      (number))))
+                (group_entry
+                  (occurrence)
+                  (member_key
+                    (type1
+                      (reference
+                        (identifier))))
+                  (type
+                    (type1
+                      (reference
+                        (identifier)))))
+                (group_entry
+                  (member_key
+                    (type1
+                      (text))
+                    (cut))
+                  (type
+                    (type1
+                      (reference
+                        (identifier))
+                      (control_operator)
+                      (number))))
+                (group_entry
+                  (occurrence)
+                  (member_key
+                    (bareword))
+                  (type
+                    (type1
+                      (reference
+                        (identifier))))))))))))
+  (rule
+    (identifier)
+    (group_entry
+      (type
+        (type1
+          (array
+            (group
+              (group_choice
+                (group_entry
+                  (occurrence)
+                  (type
+                    (type1
+                      (reference
+                        (identifier))))))))))))
+  (rule
+    (identifier)
+    (group_entry
+      (type
+        (type1
+          (parenthesized
+            (group
+              (group_choice
+                (group_entry
+                  (member_key
+                    (bareword))
+                  (type
+                    (type1
+                      (tagged
+                        (tag)
+                        (type
+                          (type1
+                            (reference
+                              (identifier))))))))
+                (group_entry
+                  (member_key
+                    (bareword))
+                  (type
+                    (type1
+                      (reference
+                        (identifier)))
+                    (type1
+                      (reference
+                        (identifier)))))
+                (group_entry
+                  (member_key
+                    (bareword))
+                  (type
+                    (type1
+                      (tagged
+                        (tag)
+                        (type
+                          (type1
+                            (reference
+                              (identifier))))
+                        (type
+                          (type1
+                            (reference
+                              (identifier)))))))))))))))
+  (rule
+    (identifier)
+    (group_entry
+      (type
+        (type1
+          (choice_from
+            (reference
+              (identifier)))))))
+  (rule
+    (identifier)
+    (group_entry
+      (type
+        (type1
+          (parenthesized
+            (group
+              (group_choice
+                (group_entry
+                  (member_key
+                    (bareword))
+                  (type
+                    (type1
+                      (number))))
+                (group_entry
+                  (member_key
+                    (bareword))
+                  (type
+                    (type1
+                      (number)))))))))))
+  (rule
+    (identifier)
+    (group_entry
+      (type
+        (type1
+          (number)
+          (range_operator)
+          (number)))))
+  (rule
+    (identifier)
+    (group_entry
+      (type
+        (type1
+          (number)
+          (range_operator)
+          (number)))))
+  (rule
+    (identifier)
+    (group_entry
+      (type
+        (type1
+          (reference
+            (identifier))))))
+  (rule
+    (identifier)
+    (group_entry
+      (type
+        (type1
+          (parenthesized
+            (group
+              (group_choice
+                (group_entry
+                  (member_key
+                    (bareword))
+                  (type
+                    (type1
+                      (reference
+                        (identifier))))))
+              (group_choice
+                (group_entry
+                  (member_key
+                    (bareword))
+                  (type
+                    (type1
+                      (reference
+                        (identifier))))))))))))
+  (rule
+    (identifier)
+    (generic_params
+      (identifier)
+      (identifier))
+    (group_entry
+      (type
+        (type1
+          (array
+            (group
+              (group_choice
+                (group_entry
+                  (type
+                    (type1
+                      (reference
+                        (identifier)))))
+                (group_entry
+                  (type
+                    (type1
+                      (reference
+                        (identifier))))))))))))
+  (rule
+    (identifier)
+    (group_entry
+      (type
+        (type1
+          (reference
+            (identifier)
+            (generic_args
+              (type1
+                (reference
+                  (identifier)))
+              (type1
+                (reference
+                  (identifier)))))))))
+  (rule
+    (identifier)
+    (group_entry
+      (type
+        (type1
+          (map
+            (group
+              (group_choice
+                (group_entry
+                  (type
+                    (type1
+                      (unwrap
+                        (reference
+                          (identifier))))))
+                (group_entry
+                  (member_key
+                    (type1
+                      (bytes)))
+                  (type
+                    (type1
+                      (bytes))))
+                (group_entry
+                  (member_key
+                    (type1
+                      (bytes)))
+                  (type
+                    (type1
+                      (tagged
+                        (tag))))))))))))
+  (rule
+    (identifier)
+    (group_entry
+      (type
+        (type1
+          (map
+            (group
+              (group_choice
+                (group_entry
+                  (member_key
+                    (bareword))
+                  (type
+                    (type1
+                      (text)))))))))))
+  (rule
+    (identifier)
+    (group_entry
+      (member_key
+        (bareword))
+      (type
+        (type1
+          (reference
+            (identifier)))))))

@@ -1,0 +1,12 @@
+{
+  "grammars": [
+    {
+      "name": "cddl",
+      "camelcase": "Cddl",
+      "scope": "source.cddl",
+      "file-types": ["cddl"],
+      "injection-regex": "^cddl$"
+    }
+  ],
+  "metadata": { "version": "0.1.0", "license": "MIT" }
+}
